@@ -4,14 +4,13 @@ from sklearn.externals import joblib
 from skimage.feature import hog
 import numpy as np
 
-clf = joblib.load("digits_cls.pkl")
-im = cv2.imread("frame0.jpg")
+# clf = joblib.load("digits_cls.pkl")
 i=0
 
 def function(im,a,b,c,d):
     global i
     # Read the input image 
-    im = cv2.imread("frame0.jpg")
+    print("called")
     im = im[a:b,c:d]
     # cv2.imshow("aa",im)
     # cv2.waitKey()

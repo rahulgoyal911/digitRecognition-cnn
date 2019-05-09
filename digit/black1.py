@@ -11,7 +11,7 @@ i=0
 def function(im,a,b,c,d):
     global i
     # Read the input image 
-    im = cv2.imread("frame0.jpg")
+    # im = cv2.imread("frame0.jpg")
     im = im[a:b,c:d]
     # cv2.imshow("aa",im)
     # cv2.waitKey()
