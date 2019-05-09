@@ -25,7 +25,7 @@ def function(im,a,b,c,d):
     
 length = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
 currentFrame = 0
-path_frame ='/home/gaurav/Documents/textDetection/full_im/'
+path_frame ="images/"
 while(currentFrame < length): # making frames from video
     ret, frame = cap.read()
     name = str(currentFrame) + '.jpg'
