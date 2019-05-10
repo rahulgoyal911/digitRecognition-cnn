@@ -14,7 +14,8 @@ def finalSave(image,value):
     iii = iii+1
     name = "image/"
     name += str(value)
-    name += "/"
+    name += "/2v"
+
     name += str(iii)
     name+=".jpg"
     cv2.imwrite(name,image)
@@ -80,49 +81,53 @@ def finalfun(recievedImage):
     response = client.text_detection(image=image) #api hit
 
     labels = response.text_annotations
-    text = str(labels[0].description.replace(" ",""))
-    text = text.replace(" ","")
-    text = text.replace("\n","")
-    print(text)
-    a = {}
-    if(len(text)>1):
-        a[0]= str(text[1])
-    if(len(text)>2):
-        a[1]= str(text[2])
-    if(len(text)>3):
-        a[2]= str(text[3])
-    if(len(text)>4):
-        a[3]= str(text[4])
-    if(len(text)>5):
-        a[4]= str(text[5])
-    if(len(text)>6):
-        a[5]= str(text[6])
-    if(len(text)>7):
-        a[6]= str(text[7])
+    try:
+        text = str(labels[0].description.replace(" ",""))
+        text = text.replace(" ","")
+        text = text.replace("\n","")
+        print(text)
+        a = {}
+        if(len(text)>1):
+            a[0]= str(text[1])
+        if(len(text)>2):
+            a[1]= str(text[2])
+        if(len(text)>3):
+            a[2]= str(text[3])
+        if(len(text)>4):
+            a[3]= str(text[4])
+        if(len(text)>5):
+            a[4]= str(text[5])
+        if(len(text)>6):
+            a[5]= str(text[6])
+        if(len(text)>7):
+            a[6]= str(text[7])
 
-    if(len(text)>9):
-        a[7]=   str(text[9])
-    if(len(text)>10):
-        a[8]=   str(text[10])
-    if(len(text)>11):
-        a[9]=   str(text[11])
-    if(len(text)>12):
-        a[10]=  str(text[12])
-    if(len(text)>13):
-        a[11]=  str(text[13])
-    if(len(text)>14):
-        a[12]=  str(text[14])
-    # a[13]=  str(text[15])
+        if(len(text)>9):
+            a[7]=   str(text[9])
+        if(len(text)>10):
+            a[8]=   str(text[10])
+        if(len(text)>11):
+            a[9]=   str(text[11])
+        if(len(text)>12):
+            a[10]=  str(text[12])
+        if(len(text)>13):
+            a[11]=  str(text[13])
+        if(len(text)>14):
+            a[12]=  str(text[14])
+        # a[13]=  str(text[15])
 
-    for val in a:
-        # print(a[val])
-        # if(int(a[val])>=0 or int(a[val])<=9):
-        insertIntoFolder(val,a[val],content)    
-    # print('----------start----------')
-    # for label in labels:
-    #     print("label : "+label.description) # print all the labels in image
+        for val in a:
+            # print(a[val])
+            # if(int(a[val])>=0 or int(a[val])<=9):
+            insertIntoFolder(val,a[val],content)    
+        # print('----------start----------')
+        # for label in labels:
+        #     print("label : "+label.description) # print all the labels in image
+    except:
+        print ("This is an error message!")
+    
 i=0
-cap = cv2.VideoCapture("vid.VOB")
+cap = cv2.VideoCapture("videos/2.VOB")
 
 def function(im,a,b,c,d):
     global i
