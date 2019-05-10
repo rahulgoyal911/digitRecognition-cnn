@@ -8,32 +8,67 @@ from google.cloud import vision
 from google.cloud.vision import types
 from PIL import ImageFilter, Image
 import time
-
-
-iii = 0
-i=0
+import csv
 
 def show(im):
     cv2.imshow("aa",im)
     cv2.waitKey()
+
+def recognise(image):
+    return 1
 def getData(im1,im2,im3,im4,im5,im6,im7,im8,im9,im10,im11,im12,im13,im14):
-    show(im1)
-    show(im2)
-    show(im3)
-    show(im4)
-    show(im5)
-    show(im6)
-    show(im7)
-    show(im8)
-    show(im9)
-    show(im10)
-    show(im11)
-    show(im12)
-    show(im13)
-    show(im14)
+    # show(im1)
+    # show(im2)
+    # show(im3)
+    # show(im4)
+    # show(im5)
+    # show(im6)
+    # show(im7)
+    # show(im8)
+    # show(im9)
+    # show(im10)
+    # show(im11)
+    # show(im12)
+    # show(im13)
+    # show(im14)
+    a = str(recognise(im1))
+    b = str(recognise(im2))
+    c = str(recognise(im3))
+    d = str(recognise(im4))
+    e = str(recognise(im5))
+    f = str(recognise(im6))
+    g = str(recognise(im7))
+    h = str(recognise(im8))
+    i = str(recognise(im9))
+    j = str(recognise(im10))
+    k = str(recognise(im11))
+    l = str(recognise(im12))
+    m = str(recognise(im13))
+    n = str(recognise(im14))
+
+    e_val = a+b+c+d+e+f+g
+    n_val = h+i+j+k+l+m+n
+    with open('data.csv', 'w') as csvFile:
+        d = ['E','N']
+        writer = csv.writer(csvFile)
+        writer.writerow(d)
+        # print("empty csv file created")
+    csvFile.close()
+    data_row = [e_val,n_val]
+    last = []
+    with open('data.csv','rt')as f:
+        data = csv.reader(f)
+        for row in data:
+                last = row
+    f.close()
+    if(data_row != last):
+        with open('data.csv', 'a') as csvFile:
+            writer = csv.writer(csvFile)
+            writer.writerow(data_row)
+        csvFile.close()
+
 
 def cropImages(image):
-    global iii
     im1 = image[0:28,28:41]
     im2 = image[0:28,41:54]
     im3 = image[0:28,54:68]
@@ -56,7 +91,8 @@ def mainFun():
     length = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
     currentFrame = 0
     path_frame ="images/"
-    while(currentFrame < length): # making frames from video
+    print(length)
+    while(currentFrame < length-2): # making frames from video
         ret, frame = cap.read()
         name = str(currentFrame) + '.jpg'
         print ('Creating frame : ' + name)
@@ -67,11 +103,12 @@ def mainFun():
         temp = im_bw
         # cv2.imwrite(path_frame+name, im_bw)
         cropImages(im_bw)
-        break
-        # currentFrame+=1
+        # break
+        currentFrame+=1
 
     cap.release()
     cv2.destroyAllWindows()
+    print("done")
 
 
 
